@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageContent = `
                     <div class="auth-container">
                         <h2>デモログイン</h2>
-                        <p class="text-center text-muted mb-4">メールアドレスとパスワードに「aiueo」と入力してください。</p>
+                        <p class="text-center text-muted mb-4">メールアドレスとパスワードに「douseidoumei」と入力してください。</p>
                         <form id="auth-form" novalidate>
                             <div class="form-group">
                                 <label for="email-input">メールアドレス</label>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Event Handlers ---
     function handleAuthSubmit(e) {
         e.preventDefault();
-        if (state.email === 'aiueo' && state.password === 'aiueo') {
+        if (state.email === 'douseidoumei' && state.password === 'douseidoumei') {
             // Create a dummy user object to proceed
             state.pendingUser = { email: 'demo@example.com', id: 'demo_user' };
             state.page = 'addName';
