@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
 
-    // --- State Management ---
     const getInitialState = () => ({
         page: 'intro',
         user: null,
         email: '', password: '', name: '',
         pendingUser: null,
         matches: [],
-        error: '' // Simplified error handling
+        error: ''
     });
 
     let state = getInitialState();
 
-    // --- Data Persistence (for name matching) ---
     const getUsers = () => {
         try {
             return JSON.parse(localStorage.getItem('users') || '[]');
@@ -30,10 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Main Render Function ---
     function render() {
         let pageContent = '';
-        state.error = ''; // Clear error on every render
+        state.error = '';
 
         switch (state.page) {
             case 'intro':
@@ -98,11 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         root.innerHTML = pageContent;
     }
 
-    // --- Event Handlers ---
     function handleAuthSubmit(e) {
         e.preventDefault();
         if (state.email === 'douseidoumei' && state.password === 'douseidoumei') {
-            // Create a dummy user object to proceed
             state.pendingUser = { email: 'demo@example.com', id: 'demo_user' };
             state.page = 'addName';
             render();
@@ -120,9 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const users = getUsers();
         const newUser = { ...state.pendingUser, name: state.name };
-        // Use a temporary ID for demo purposes, but keep name for matching
         newUser.id = `demo_${Date.now()}`;
-        const updatedUsers = [...users, newUser]; // Just add the new user for demo
+        const updatedUsers = [...users, newUser];
         saveUsers(updatedUsers);
         state.user = newUser;
         state.matches = users.filter(u => u.name === state.name);
@@ -130,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     }
 
-    // --- Event Delegation Setup ---
     root.addEventListener('click', (e) => {
         const id = e.target.id;
         if (id === 'start-btn') state.page = 'auth';
@@ -156,6 +149,5 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (id === 'name-form') handleNameSubmit(e);
     });
 
-    // Initial Render
     render();
 });
