@@ -9,7 +9,7 @@
     --danger-color: #dc3545;
     --light-gray: #6c757d;
     --border-radius: 8px;
-    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -32,19 +32,41 @@ body {
 }
 
 @keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-section {
@@ -67,7 +89,7 @@ body {
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 0.5rem;
     animation: fadeInDown 1s ease-out 0.5s forwards;
     opacity: 0;
@@ -76,7 +98,7 @@ body {
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 300;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease-out 1s forwards;
     opacity: 0;
@@ -101,17 +123,18 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 1s ease-out 2s forwards;
     opacity: 0;
 }
 
 .hero-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.auth-container, .matches-container {
+.auth-container,
+.matches-container {
     background-color: var(--text-light);
     padding: 40px;
     border-radius: var(--border-radius);
@@ -179,13 +202,17 @@ body {
     .hero-title {
         font-size: 2.8rem;
     }
+
     .hero-subtitle {
         font-size: 1.3rem;
     }
+
     .hero-description {
         font-size: 1rem;
     }
-    .auth-container, .matches-container {
+
+    .auth-container,
+    .matches-container {
         padding: 30px;
     }
 }
@@ -194,25 +221,33 @@ body {
     .hero-title {
         font-size: 2.2rem;
     }
+
     .hero-subtitle {
         font-size: 1.1rem;
         margin-bottom: 1.5rem;
     }
+
     .hero-description {
         display: none;
     }
+
     .hero-btn {
         font-size: 1rem;
         padding: 12px 28px;
     }
-    .auth-container, .matches-container {
+
+    .auth-container,
+    .matches-container {
         padding: 20px;
         margin: 0 10px;
         max-width: 100%;
     }
-    .auth-container h2, .matches-container h2 {
+
+    .auth-container h2,
+    .matches-container h2 {
         font-size: 1.8rem;
     }
+
     .logout-btn {
         top: 10px;
         right: 10px;
