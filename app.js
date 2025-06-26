@@ -1,3 +1,5 @@
+const DouseiDoumeiApp = {};
+
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
 
@@ -34,9 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Failed to save to localStorage", e);
         }
     };
+    
+    // Expose functions for testing
+    DouseiDoumeiApp.getUsers = getUsers;
+    DouseiDoumeiApp.saveUsers = saveUsers;
+    DouseiDoumeiApp.USERS_STORAGE_KEY = USERS_STORAGE_KEY;
+
 
     // --- Rendering ---
+    // The render function is not exposed as it depends on the DOM
     const render = () => {
+        if (!root) return; // Don't render if root element is not on the page (e.g. in test environment)
         const { page, form, user, matches } = state;
         let pageContent = "";
         state.error = ""; // Reset error on each render
@@ -152,24 +162,26 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // --- Event Delegation ---
-    root.addEventListener("click", (e) => {
-        const { action } = e.target.dataset;
-        if (action && typeof actions[action] === "function") {
-            actions[action](e);
-        }
-    });
+    if (root) {
+        root.addEventListener("click", (e) => {
+            const { action } = e.target.dataset;
+            if (action && typeof actions[action] === "function") {
+                actions[action](e);
+            }
+        });
 
-    root.addEventListener("submit", (e) => {
-        const { action } = e.target.dataset;
-        if (action && typeof actions[action] === "function") {
-            actions[action](e);
-        }
-    });
-    
-    root.addEventListener("input", (e) => {
-        actions.updateField(e);
-    });
+        root.addEventListener("submit", (e) => {
+            const { action } = e.target.dataset;
+            if (action && typeof actions[action] === "function") {
+                actions[action](e);
+            }
+        });
+        
+        root.addEventListener("input", (e) => {
+            actions.updateField(e);
+        });
 
-    // --- Initial Render ---
-    render();
+        // --- Initial Render ---
+        render();
+    }
 });

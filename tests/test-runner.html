@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Runner - 同姓同名.com</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { padding: 20px; }
+        h1 { margin-bottom: 20px; }
+        #results { 
+            font-family: monospace;
+            white-space: pre;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>同姓同名.com - テスト結果</h1>
+    <p>コンソール（F12キーで開く）で詳細なテスト結果を確認してください。</p>
+    <div id="results"></div>
+
+    <!-- App scripts -->
+    <script src="../app.js"></script>
+    
+    <!-- Test script -->
+    <script src="app.test.js"></script>
+
+    <script>
+        // Redirect console.log to display on the page
+        (function () {
+            const results = document.getElementById('results');
+            const oldLog = console.log;
+            const oldError = console.error;
+
+            console.log = function (...args) {
+                results.textContent += args.join(' ') + '\n';
+                oldLog.apply(console, args);
+            };
+            console.error = function (...args) {
+                results.textContent += args.join(' ') + '\n';
+                oldError.apply(console, args);
+            };
+        })();
+    </script>
+</body>
+</html>
