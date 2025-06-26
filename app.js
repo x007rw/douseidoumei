@@ -1,20 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById('root');
+document.addEventListener("DOMContentLoaded", () => {
+    const root = document.getElementById("root");
 
     const getInitialState = () => ({
-        page: 'intro',
+        page: "intro",
         user: null,
-        email: '', password: '', name: '',
+        email: "", password: "", name: "",
         pendingUser: null,
         matches: [],
-        error: ''
+        error: ""
     });
 
     let state = getInitialState();
 
     const getUsers = () => {
         try {
-            return JSON.parse(localStorage.getItem('users') || '[]');
+            return JSON.parse(localStorage.getItem("users") || "[]");
         } catch (e) {
             console.error("Failed to read from localStorage", e);
             return [];
@@ -22,18 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const saveUsers = (users) => {
         try {
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem("users", JSON.stringify(users));
         } catch (e) {
             console.error("Failed to save to localStorage", e);
         }
     };
 
     function render() {
-        let pageContent = '';
-        state.error = '';
+        let pageContent = "";
+        state.error = "";
 
         switch (state.page) {
-            case 'intro':
+            case "intro":
                 pageContent = `
                     <div class="hero-section text-center">
                         <h1 class="hero-title">同姓同名.com</h1>
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button id="start-btn" class="btn btn-primary btn-lg hero-btn mt-4">無料で始める</button>
                     </div>`;
                 break;
-            case 'auth':
+            case "auth":
                 pageContent = `
                     <div class="auth-container">
                         <h2>デモログイン</h2>
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button id="back-to-intro-btn" class="btn-toggle">戻る</button>
                     </div>`;
                 break;
-            case 'addName':
+            case "addName":
                 pageContent = `
                     <div class="auth-container">
                         <h2>お名前の登録</h2>
@@ -77,10 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         </form>
                     </div>`;
                 break;
-            case 'matches':
+            case "matches":
                 const matchesList = state.matches.length > 0 ?
-                    state.matches.map(m => `<li class="list-group-item">${m.name}</li>`).join('') :
-                    '<li class="list-group-item">まだ誰もいません。</li>';
+                    state.matches.map(m => `<li class="list-group-item">${m.name}</li>`).join("") :
+                    `<li class="list-group-item">まだ誰もいません。</li>`;
                 pageContent = `
                     <div class="container matches-container">
                         <button id="logout-btn" class="btn btn-secondary logout-btn">ログアウト</button>
@@ -90,27 +90,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
                 break;
             default:
-                pageContent = '<h1>エラー</h1><p>ページが見つかりません。</p>';
+                pageContent = "<h1>エラー</h1><p>ページが見つかりません。</p>";
         }
         root.innerHTML = pageContent;
     }
 
     function handleAuthSubmit(e) {
         e.preventDefault();
-        if (state.email === 'douseidoumei' && state.password === 'douseidoumei') {
-            state.pendingUser = { email: 'demo@example.com', id: 'demo_user' };
-            state.page = 'addName';
+        if (state.email === "douseidoumei" && state.password === "douseidoumei") {
+            state.pendingUser = { email: "demo@example.com", id: "demo_user" };
+            state.page = "addName";
             render();
         } else {
-            document.getElementById('general-error').textContent = 'メールアドレスとパスワードが違います。';
+            document.getElementById("general-error").textContent = "メールアドレスとパスワードが違います。";
         }
     }
 
     function handleNameSubmit(e) {
         e.preventDefault();
-        const nameInput = document.getElementById('name-input');
+        const nameInput = document.getElementById("name-input");
         if (!nameInput.value.trim()) {
-            document.getElementById('name-error').textContent = '名前を入力してください。';
+            document.getElementById("name-error").textContent = "名前を入力してください。";
             return;
         }
         const users = getUsers();
@@ -120,33 +120,33 @@ document.addEventListener('DOMContentLoaded', () => {
         saveUsers(updatedUsers);
         state.user = newUser;
         state.matches = users.filter(u => u.name === state.name);
-        state.page = 'matches';
+        state.page = "matches";
         render();
     }
 
-    root.addEventListener('click', (e) => {
+    root.addEventListener("click", (e) => {
         const id = e.target.id;
-        if (id === 'start-btn') state.page = 'auth';
-        else if (id === 'back-to-intro-btn') state.page = 'intro';
-        else if (id === 'logout-btn') state = getInitialState();
+        if (id === "start-btn") state.page = "auth";
+        else if (id === "back-to-intro-btn") state.page = "intro";
+        else if (id === "logout-btn") state = getInitialState();
         else return;
         render();
     });
 
-    root.addEventListener('input', (e) => {
+    root.addEventListener("input", (e) => {
         const id = e.target.id;
         const value = e.target.value;
 
-        if (id === 'email-input') state.email = value;
-        else if (id === 'password-input') state.password = value;
-        else if (id === 'name-input') state.name = value;
+        if (id === "email-input") state.email = value;
+        else if (id === "password-input") state.password = value;
+        else if (id === "name-input") state.name = value;
     });
 
-    root.addEventListener('submit', (e) => {
+    root.addEventListener("submit", (e) => {
         e.preventDefault();
         const id = e.target.id;
-        if (id === 'auth-form') handleAuthSubmit(e);
-        else if (id === 'name-form') handleNameSubmit(e);
+        if (id === "auth-form") handleAuthSubmit(e);
+        else if (id === "name-form") handleNameSubmit(e);
     });
 
     render();

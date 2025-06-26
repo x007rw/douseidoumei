@@ -19,7 +19,7 @@ html, body {
 }
 
 body {
-    font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     background-color: var(--background-color);
     display: flex;
     justify-content: center;
@@ -258,4 +258,24 @@ body {
         padding: 0.25rem 0.5rem;
         font-size: 0.8rem;
     }
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #5a48b8;
+    border-color: #5a48b8;
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    border-color: var(--light-gray);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
 }
