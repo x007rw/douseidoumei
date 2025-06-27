@@ -1,7 +1,7 @@
 const DouseiDoumeiApp = {};
 
 document.addEventListener("DOMContentLoaded", () => {
-    const root = document.getElementById("root");
+        let root = document.getElementById("root");
 
     // --- Constants ---
     const DEMO_EMAIL = "douseidoumei";
@@ -159,6 +159,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 state.form[field] = e.target.value;
             }
         }
+    };
+
+    // For testing purposes
+    DouseiDoumeiApp.state = state;
+    DouseiDoumeiApp.actions = actions;
+    DouseiDoumeiApp.initForTesting = (rootElement) => {
+        state = getInitialState();
+        root = rootElement;
     };
 
     // --- Event Delegation ---
