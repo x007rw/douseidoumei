@@ -30,6 +30,9 @@
 ├── app.js          # アプリケーションの全ロジック（状態管理、DOM操作、イベント処理）
 ├── index.html      # アプリケーションの骨格となるHTMLファイル
 ├── style.css       # カスタムスタイル、アニメーション、レスポンシブデザインを定義
+├── tests
+│   ├── app.test.js
+│   └── test-runner.html
 └── README.md       # このファイル
 ```
 
